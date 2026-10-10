@@ -3,8 +3,6 @@
 ## Overview
 Cleaned and analysed ~129k Amazon India sales records (Mar to Jun 2022) and built an Excel dashboard using pivot tables, charts, slicers and a timeline.
 
-## Dashboard
-![Dashboard](Amazon_Sales_Dashboard.pdf)
 
 ## Dataset
 Amazon Sale Report, Kaggle: [https://www.kaggle.com/datasets/arpit2712/amazonsalesreport]
