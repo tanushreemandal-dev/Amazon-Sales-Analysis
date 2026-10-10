@@ -1,20 +1,51 @@
-# Amazon India Sales Analysis (MS-Excel) 📊
+# 📊 Amazon India Sales Analysis (MS-Excel)
 
-## Overview
+> Cleaning a messy ~129k-row Amazon India sales dataset and turning it into an interactive Excel dashboard using pivot tables, charts, slicers and a timeline.
+
+![Excel](https://img.shields.io/badge/Tool-MS%20Excel-green)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![Type](https://img.shields.io/badge/Type-Data%20Cleaning%20%26%20Dashboard-blue)
+
+---
+
+## 📌 Overview
+
 Cleaned and analysed ~129k Amazon India sales records (Mar to Jun 2022) and built an Excel dashboard using pivot tables, charts, slicers and a timeline.
 
+---
 
-## Dataset 
-Amazon Sale Report, Kaggle: [https://www.kaggle.com/datasets/arpit2712/amazonsalesreport]
-Rows: 128,976 | Columns: 21
+## 📈 Dashboard
 
-## Tools
-Excel (pivot tables, pivot charts, slicers, timeline)
+[📄 View the full dashboard (PDF)](./Amazon_Sales_Dashboard.pdf)
 
-## Data Cleaning Steps
+---
 
-### 1. Duplicates 
-- Ran Remove Duplicates across all columns and 168 exact duplicate rows were removed.
+## 🗂️ Dataset
+
+Amazon Sale Report, Kaggle: [Amazon Sales Report](https://www.kaggle.com/datasets/arpit2712/amazonsalesreport)
+
+| Detail | Value |
+|---|---|
+| Rows | 128,976 |
+| Columns | 21 |
+| Period | March to June 2022 |
+| Market | Amazon India (INR) |
+
+---
+
+## 🛠️ Tools & Environment
+
+- **Tool:** Microsoft Excel
+- **Features used:** Pivot tables, pivot charts, slicers, timeline, Text to Columns, Find & Replace, Remove Duplicates
+- **Editor:** VS Code (for version control and repo management)
+- **Version Control:** Git & GitHub
+
+---
+
+## 🧹 Data Cleaning Steps
+
+### 1. Duplicates
+- Ran Remove Duplicates across all columns, not just `Order ID`, because one order can have several item rows. 168 exact duplicate rows were removed.
 
 ### 2. Date column
 - **Problem:** Dates were stored as text in MM-DD-YY format (e.g. `04-30-22`). When the CSV was opened directly in Excel, about 55,000 cells were auto-converted into real dates and the rest stayed as text. Because the system is set to a DD-MM locale, any date with both parts of 12 or below could silently have its day and month swapped.
@@ -25,7 +56,7 @@ Excel (pivot tables, pivot charts, slicers, timeline)
 - Deleted `index` (a row counter) and the empty columns `New` and `PendingS`.
 
 ### 4. State names (`ship-state`)
-- Standardised state names (e.g. Pondicherry → Puducherry, AR → Arunachal Pradesh) 
+- Standardised state names (e.g. Pondicherry → Puducherry, AR → Arunachal Pradesh)
 - Changes were made with Find & Replace using "Match entire cell contents", so partial matches were not affected.
 
 ### 5. Missing shipping location
@@ -41,7 +72,7 @@ Excel (pivot tables, pivot charts, slicers, timeline)
 - Blank `currency` cells were on cancelled or in-transit orders with Qty 0 and no Amount. All populated values were INR and the sales channel is Amazon.in, so blanks were filled with `INR` for consistency.
 
 ### 8. Amount column
-- Rounded `Amount` to whole rupees (stored values, not only display). 
+- Rounded `Amount` to whole rupees (stored values, not only display).
 - Blank Amounts belong to cancelled or unfulfilled orders with Qty 0. No values were estimated or filled in.
 - **Zero-amount shipped orders:** rows have Status Shipped, Qty above 0 and Amount = 0. The cause is not stated in the source. They were **kept** (they are real shipped items), counted in order and unit totals, and have no effect on revenue totals.
 
@@ -49,34 +80,72 @@ Excel (pivot tables, pivot charts, slicers, timeline)
 - "Returned to Seller" and "Returning to Seller" were **kept separate**, because one is a completed return and the other is in progress.
 - Used `Status` (not `Courier Status`) for cancellation and return analysis, because `Status` holds the order outcome.
 
-### 10. Duplicates 
-- Ran Remove Duplicates across all columns, not just `Order ID`, because one order can have several item rows. [168] exact duplicate rows were removed.
+### 10. Other columns
+- Columns not used in the analysis (e.g. `ship-service-level`, `ship-country`, `B2B`, `fulfilled-by`) were left as in the source.
 
-### 11. Other columns
-- Columns not used in the analysis (e.g. `ship-service-level`, `ship-country`, `B2B`, `fulfilled-by`) were left as in the source. [If you filled blank `fulfilled-by` with "Not Easy Ship", add that here.]
+---
 
-### Analysis rules decided during cleaning
-- **Revenue** excludes cancelled orders.
-- **Order Lines** = number of item rows (one order can contain several rows), not unique orders.
-- **Units Sold** = sum of `Qty`.
-- **March 2022** contains only one day of data, so it is excluded from the monthly trend.
-- **Return rate** uses Merchant-fulfilled orders only, because Amazon-fulfilled rows do not record delivery or return outcomes.
-- Chart tables on the "Chart Data" sheet were copied from pivot tables as values.
+## 📏 Analysis Rules Decided During Cleaning
 
+| Rule | Definition |
+|---|---|
+| **Revenue** | Excludes cancelled orders |
+| **Order Lines** | Number of item rows (one order can contain several rows), not unique orders |
+| **Units Sold** | Sum of `Qty` |
+| **March 2022** | Contains only one day of data, so it is excluded from the monthly trend |
+| **Return rate** | Uses Merchant-fulfilled orders only, because Amazon-fulfilled rows do not record delivery or return outcomes |
+| **Chart tables** | Tables on the "Chart Data" sheet were copied from pivot tables as values |
 
-## Business Questions
+---
+
+## ❓ Business Questions
+
 1. Which states generate the most revenue?
 2. How does cancellation vary by state and fulfilment type?
 3. How does revenue change month to month?
 4. Which categories and sizes earn the most?
 5. How large are returns and cancellations by category?
 
-## Key Findings
-- Total revenue (excluding cancelled orders): ₹71.6M
-- Overall cancellation rate: ~14%
-- Merchant-fulfilled cancellation: 17.47% vs Amazon 12.79%
+---
 
+## 🔍 Key Findings
 
-## Files
-- `excel\Amazon_Sales_Analysis.xlsx`: cleaned data, pivots, dashboard
-- `Amazon_Sales_Dashboard.pdf`: dashboard screenshot
+| Metric | Value |
+|---|---|
+| 💰 Total revenue (excluding cancelled orders) | ₹71.6M |
+| ❌ Overall cancellation rate | ~14% |
+| 🏬 Merchant-fulfilled cancellation | 17.47% |
+| 📦 Amazon-fulfilled cancellation | 12.79% |
+
+---
+
+## ✅ Skills Demonstrated
+
+- Data cleaning in Excel (Text to Columns, Find & Replace, Remove Duplicates, filters)
+- Data quality diagnosis (auto-converted dates, inconsistent state names, missing locations)
+- Pivot tables, pivot charts, slicers and timelines
+- Dashboard design and KPI cards
+- Documenting assumptions and analysis rules
+
+---
+
+## 📁 Repository Structure
+
+```
+Amazon-Sales-Analysis/
+│
+├── data/
+│   └── DATASET_INFO.md                # Dataset source link
+├── excel/
+│   └── Amazon_Sales_Analysis.xlsx     # Cleaned data, pivot tables, charts, dashboard
+├── Amazon_Sales_Dashboard.pdf         # Dashboard export
+└── README.md                          # Project documentation
+```
+---
+
+## 🤝 Connect
+
+If you have feedback, questions, or just want to talk data, feel free to reach out or open an issue on this repo!
+
+- 💼 LinkedIn: [Tanushree Mandal](https://linkedin.com/in/tanushree-mandal-aba24b286)
+- 📧
