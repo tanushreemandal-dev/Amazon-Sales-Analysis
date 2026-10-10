@@ -1,10 +1,10 @@
-# Amazon India Sales Analysis (MS-Excel)
+# Amazon India Sales Analysis (MS-Excel) 📊
 
 ## Overview
 Cleaned and analysed ~129k Amazon India sales records (Mar to Jun 2022) and built an Excel dashboard using pivot tables, charts, slicers and a timeline.
 
 
-## Dataset
+## Dataset 
 Amazon Sale Report, Kaggle: [https://www.kaggle.com/datasets/arpit2712/amazonsalesreport]
 Rows: 128,976 | Columns: 21
 
